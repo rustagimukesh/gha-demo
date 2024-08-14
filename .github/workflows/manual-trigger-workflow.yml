@@ -1,0 +1,25 @@
+name: Sample Workflow
+
+on:
+  repository_dispatch:
+    types: [custom-event]
+
+jobs:
+  job1:
+    needs: job2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run a script
+        run: echo "Running job 1 on Ubuntu"
+
+  job2:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run a script
+        run: echo "Running job 2 on Windows"
